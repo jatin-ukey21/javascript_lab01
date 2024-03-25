@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Event Registration</title>
+    <style>
+        .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 65px;
+            border-radius: 8px;
+            margin-top: 50px;
+            height: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 10px 23px;
+            margin-left: 170px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        body {
+            background-color: lightcyan; 
+        }
+    </style>
+</head>
+<body>
+
+<center><b><h1>Technical Event Registration</h1></b></center>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById("n1").value;
+        var email = document.getElementById("n2").value;
+        var contact = document.getElementById("n3").value;
+        var tshirt = document.getElementById("n4").value;
+        var checkboxes = document.querySelectorAll('input[name="d[]"]:checked');
+        var radioButtons = document.querySelectorAll('input[name="hear-about"]:checked');
+
+        var eregex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (name === "" || email === "" || contact === "" || tshirt === "" || checkboxes.length === 0 || radioButtons.length === 0) {
+            alert("All fields are mandatory");
+            return false;
+        }
+        else if (!eregex.test(email)) {
+            alert("Please fill the email in correct email format!");
+            return false;
+        }
+        else if(contact.length < 10 || contact.length > 10){
+            alert("Number should be of 10 digits! Please enter a valid number");
+            return false;
+        }
+        else if(isNaN(contact)){
+            alert("Only numbers are allowed for contact number!");
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>
+
+<div class="center-container">
+    <div class="form-container">
+        <form onsubmit="return validateForm()" action="accept.html">
+
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" name="name" placeholder="Enter your name" id="n1"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" placeholder="Enter your email" id="n2"></td>
+                </tr>
+                <tr>
+                    <td>Contact no.</td>
+                    <td><input type="tel" name="cno" placeholder="Enter contact number" id="n3"></td>
+                </tr>
+                <tr>
+                    <td>T-shirt Size:</td>
+                    <td><select name="Tshirt" id="n4">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="Extra Large">Extra Large</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Special Requests:</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="d[]" value="Vegetarian" id="i5"><label for="i5">Vegetarian</label> <br>
+                        <input type="checkbox" name="d[]" value="Vegan" id="i6"><label for="i6">Vegan</label> <br>
+                        <input type="checkbox" name="d[]" value="Gluten-free" id="i7"><label for="i7">Gluten-free</label> <br>
+                        <input type="checkbox" name="d[]" value="Others" id="i8"><label for="i8">Others</label> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>How did you hear about the event?</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" id="i9" name="hear-about" value="social-media">
+                        <label for="i9">Social Media</label><br>
+                        <input type="radio" id="i10" name="hear-about" value="friend-family">
+                        <label for="i10">Friend/Family</label><br>
+                        <input type="radio" id="i11" name="hear-about" value="website">
+                        <label for="i11">Website</label><br>
+                        <input type="radio" id="i12" name="hear-about" value="other">
+                        <label for="i12">Other</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="button"><center><button type="submit" id="i13">Register</button> </center></div></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
